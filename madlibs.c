@@ -2,10 +2,19 @@
 
 #include <stdio.h>
 #include <stbool.h>
-#include <stlib.h>
+
+
+int main(){
+FILE 
 
 
 
 
 
 
+
+
+
+
+
+return 0;}

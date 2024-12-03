@@ -5,7 +5,8 @@
 
 
 int main(){
-FILE 
+FILE *readinput  
+ readinput = fopen("madlib2.txt", "r");
 
 
 
@@ -15,6 +16,6 @@ FILE
 
 
 
-
-
-return 0;}
+fclose(readinput);
+return 0;
+}

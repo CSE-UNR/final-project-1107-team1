@@ -1,9 +1,7 @@
 //author:Louije Jan Sison, Yunling Shi
 #include <stdio.h>
 #include <stdbool.h>
-#define yo 63
-#define ya 22
-#define big 1000
+#define yo 69
 #define filename "madlib1.txt"
 void count(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);

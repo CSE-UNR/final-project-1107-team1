@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #define yo 69
+#define ya 22
 #define filename "madlib1.txt"
 void count(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);

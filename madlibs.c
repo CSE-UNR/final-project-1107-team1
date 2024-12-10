@@ -9,7 +9,7 @@ void count(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
 void displ(int mac, char arr[][yo]);
 //user input loop
-//swap
+void swapstr(char str1[], char str2[]);
 //straighten string
 int main() {
     FILE *file;
@@ -70,4 +70,20 @@ void displ(int mac, char arr[][yo]){
 for(int y = 0; y<mac; y++){
 printf(" %s", arr[y]);
 }
+}
+void swapstr(char str1[], char str2[]) {
+    int i = 0;
+    char temp[50];
+
+    // Find the length of the shorter string
+    while (str1[i] != '\0' || str2[i] != '\0') {
+       i+=2;
+   }
+
+    // Swap characters
+    for (int j = 0; j < i; j++) {
+        temp[50] = str1[j];
+        str1[j] = str2[j];
+        str2[j] = temp[50];
+    }
 }

@@ -7,7 +7,7 @@
 #define filename "madlib1.txt"
 void acount(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
-void displ(char arr[][yo]);
+void displ(int mac, char arr[][yo]);
 void uinput(FILE* fptr,int mac, char arr[][yo]);
 void swapstr(int row1, int row2, char arr[][yo], char arr2[][yo]);
 //straighten string
@@ -70,10 +70,10 @@ int y = 0;
 while(fgets(arr[y], yo, ptr) && y < mac){y++;}
 return y;
  fclose(ptr);}
-void displ(char arr[][yo]){
+void displ(int mac, char arr[][yo]){
 
 for(int y = 0; y<mac; y++){
-printf("%s" , arr[y]);
+printf("%s " , arr[y]);
 }
 }
 void uinput(FILE* fptr,int mac, char arr[][yo]){

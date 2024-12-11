@@ -85,12 +85,12 @@ scanf("%s", arr[y]);
 }
 if(buffer[i][j-2] == 'N'){
 
-printf("Enter an noun: ");
+printf("Enter a noun: ");
 scanf("%s", arr[y]);
 }
 if(buffer[i][j-2] == 'V'){
 
-printf("Enter an verb: ");
+printf("Enter a verb: ");
 scanf("%s", arr[y]);
 }
 }

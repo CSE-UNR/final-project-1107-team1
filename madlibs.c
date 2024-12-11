@@ -9,7 +9,7 @@ void acount(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
 void displ(int mac, char arr[][yo]);
 void uinput(FILE* fptr,int mac, char arr[][yo]);
-void swapstr(FILE* pnt,char arr[][yo], char arr2[][yo], int inputsize);
+void swapstr(char arr[][yo], char arr2[][yo], int size);
 //straighten string
 int main() {
     FILE *file;
@@ -97,31 +97,18 @@ scanf("%s", arr[i]);
 }
 }
 }
-void swapstr(char arr[][yo], char arr2[][yo], int inputsize) {
-    char temp[yo];
+void swapstr(char arr[][yo], char arr2[][yo], int size) {
+   
 
-    for (int i = 0; i < inputsize; i++) {
-        // Copy str1[i] to temp
-        int j = 0;
-        while (arr[i][j] != '\0') {
-            temp[j] = arr[i][j];
-            j++;
+   for (int i = 1; i <= size; i++) {
+       int x = i*2;
+
+       for (int j = 1; j <= yo; j++) {
+            char temp = arr1[x-1][yo];
+            arr1[x-1][yo] = arr2[i-1][yo];
+            arr2[i-1][yo] = temp;
         }
-        temp[j] = '\0';
-
-        // Copy str2[i] to str1[i]
-     
-        while (arr2[i][j] != '\0') {
-            arr[i][j] = arr2[i][j];
-            j++;
-        }
-        arr[i][j] = '\0';
-
-        // Copy temp to str2[i]
-
-        while (temp[j] != '\0') {
-            arr2[i][j] = temp[j];
-            j++;
+    }
         }
         arr2[i][j] = '\0';
     }

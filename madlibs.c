@@ -1,15 +1,15 @@
-//author:Louije Jan Sison, Yunling Shi
+//author:Louije Jan Sison, Yunling Shi, Arnav
 #include <stdio.h>
 #include <stdbool.h>
 #define yo 63
 #define ya 22
-#define big 100
+#define big 1000
 #define filename "madlib1.txt"
 void acount(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
-void displ(int mac, char arr[][yo]);
+void displ(char arr[][yo]);
 void uinput(FILE* fptr,int mac, char arr[][yo]);
-void swapstr(char arr[][yo], char arr2[][yo], int size);
+void swapstr(int row1, int row2, char arr[][yo], char arr2[][yo]);
 //straighten string
 int main() {
     FILE *file;
@@ -17,6 +17,7 @@ int main() {
     int i, h, l, a, j, x;
      acount(&l);
  h = l*2+1;
+ //x = l*2;
 char libi[h][yo], input[l][yo], buffer[h][yo]; 
     // Open the file for reading
     file = fopen(filename, "r");
@@ -27,7 +28,13 @@ char libi[h][yo], input[l][yo], buffer[h][yo];
     
 a = storef(file, h, libi);
 uinput(file, h, input);
- //swapstr(libi, 1, 0, input);
+ 
+
+ for(j=1;j<=l;j++){
+ x=j*2;
+
+ swapstr(x-1, j-1, libi,input);
+ }
      displ(a, libi);
     
     
@@ -35,9 +42,7 @@ uinput(file, h, input);
     // Close the file
     fclose(file);
    
-    printf("%d %s\n",a , libi[2]);
-    printf("%d %s",a , input[0]);
-    printf("(%d)\n", a);
+   
     return 0;
 }
 void acount(int *k){
@@ -65,10 +70,10 @@ int y = 0;
 while(fgets(arr[y], yo, ptr) && y < mac){y++;}
 return y;
  fclose(ptr);}
-void displ(int mac, char arr[][yo]){
+void displ(char arr[][yo]){
 
 for(int y = 0; y<mac; y++){
-printf("%d %s",y+1 , arr[y]);
+printf("%s" , arr[y]);
 }
 }
 void uinput(FILE* fptr,int mac, char arr[][yo]){
@@ -97,19 +102,28 @@ scanf("%s", arr[i]);
 }
 }
 }
-void swapstr(char arr[][yo], char arr2[][yo], int size) {
-   
+void swapstr(int row1, int row2, char arr[][yo], char arr2[][yo]) {
+    char temp[100];
 
-   for (int i = 1; i <= size; i++) {
-       int x = i*2;
+int y, i;
 
-       for (int j = 1; j <= yo; j++) {
-            char temp = arr1[x-1][yo];
-            arr1[x-1][yo] = arr2[i-1][yo];
-            arr2[i-1][yo] = temp;
-        }
+
+    
+    for ( y = 0; arr[row1][y] != '\0'; y++) {
+        temp[y] = arr[row1][y];
+  }
+    temp[y] = '\0';
+
+    
+    for ( y = 0; arr2[row2][y] != '\0'; y++) {
+        arr[row1][y] = arr2[row2][y];
     }
-        }
-        arr2[i][j] = '\0';
+    arr[row1][y] = '\0';
+
+  
+    for ( y = 0; temp[y] != '\0'; y++) {
+        arr2[row2][y] = temp[y];
     }
+    arr2[row2][y] = '\0';
+
 }

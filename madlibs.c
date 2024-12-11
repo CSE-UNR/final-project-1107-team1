@@ -3,13 +3,13 @@
 #include <stdbool.h>
 #define yo 63
 #define ya 22
-#define big 1000
+#define big 100
 #define filename "madlib1.txt"
 void acount(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
 void displ(int mac, char arr[][yo]);
 void uinput(FILE* fptr,int mac, char arr[][yo]);
-//swap
+void swapstr(FILE* pnt, int mac, int mac2, char arr[][yo], char arr2[][yo]);
 //straighten string
 int main() {
     FILE *file;
@@ -27,14 +27,16 @@ char libi[h][yo], input[l][yo], buffer[h][yo];
     
 a = storef(file, h, libi);
 uinput(file, h, input);
+ //swapstr(libi, 1, 0, input);
      displ(a, libi);
     
-     
+    
 
     // Close the file
     fclose(file);
    
-    printf("%d(%s)\n",a , libi[5]);
+    printf("%d %s\n",a , libi[2]);
+    printf("%d %s",a , input[0]);
     printf("(%d)\n", a);
     return 0;
 }
@@ -72,48 +74,52 @@ printf("%d %s",y+1 , arr[y]);
 void uinput(FILE* fptr,int mac, char arr[][yo]){
 char buffer[mac][yo];
 int y = 0;
-for(int i=0;i<ya;i++){
-for(int j=0;j<ya;j++){
-fscanf(fptr, "%c", &buffer[i][j]);
-}
-}
-for(int i=0;i<ya;i++){
-for(int j=0;j<ya;j++){
-if(buffer[i][j-2] == 'A'){
+while(fgets(buffer[y], yo, fptr) && y < mac){y++;}
+//return y;
+//fscanf(fptr, "%c", &buffer[i][j]);
+
+
+for(int i=0;i<mac;i++){
+
+if(buffer[i][yo] == 'A'){
 printf("Enter an adjective: ");
-scanf("%s", arr[y]);
+scanf("%s", arr[i]);
 }
-if(buffer[i][j-2] == 'N'){
+if(buffer[i][yo] == 'N'){
 
 printf("Enter a noun: ");
-scanf("%s", arr[y]);
+scanf("%s", arr[i]);
 }
-if(buffer[i][j-2] == 'V'){
+if(buffer[i][yo] == 'V'){
 
 printf("Enter a verb: ");
-scanf("%s", arr[y]);
+scanf("%s", arr[i]);
 }
 }
 }
-}
-void swapstr(char arr[][yo], int row1, int row2, char arr2[][yo]) {
-    char temp[yo];
-int i;
-    // Copy row1 to temp
-    for ( i = 0; arr[row1][i] != '\n'; i++) {
-        temp[i] = arr[row1][i];
+void swapstr(FILE* pnt, int mac, int mac2, char arr[][yo], char arr2[][yo]) {
+    char temp[100];
+    char buffer[mac][yo];
+int y, i;
+while(fgets(buffer[i], yo, pnt) && i < mac){i++;}
+for(y=0;y<mac2;y++){
+    if(buffer[y][yo] == 'A'){
+    for ( y = 0; arr[y] != '\0'; y++) {
+        temp[y] = arr[y];
     }
-    temp[i] = ' '; 
+    temp[y] = '\0';
 
-    // Copy row2 to row1
-    for ( i = 0; arr[row2][i] != '\n'; i++) {
-        arr[row1][i] = arr[row2][i];
+    
+    for ( y = 0; arr2[y] != '\0'; y++) {
+        arr[y] = arr2[y];
     }
-    arr[row1][i] = ' '; // Add null terminator
+    arr[y] = '\0';
 
-    // Copy temp to row2
-    for ( i = 0; temp[i] != '\n'; i++) {
-        arr[row2][i] = temp[i];
+  
+    for ( y = 0; temp[y] != '\0'; y++) {
+        arr2[y] = temp[y];
     }
-    arr2[row2][i] = ' '; // Add null terminator
+    arr2[y] = '\0';
+    }
+}
 }

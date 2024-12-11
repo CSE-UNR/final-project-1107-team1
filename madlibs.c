@@ -1,45 +1,44 @@
 //author:Louije Jan Sison, Yunling Shi
 #include <stdio.h>
 #include <stdbool.h>
-#define yo 69
+#define yo 63
 #define ya 22
+#define big 1000
 #define filename "madlib1.txt"
-void count(int *k);
+void acount(int *k);
 int storef(FILE* ptr, int mac, char arr[][yo]);
 void displ(int mac, char arr[][yo]);
-//user input loop
-void swapstr(char str1[], char str2[]);
+void uinput(FILE* fptr,int mac, char arr[][yo]);
+//swap
 //straighten string
 int main() {
     FILE *file;
    
-    int i, h, l;
-     count(&l);
+    int i, h, l, a, j, x;
+     acount(&l);
  h = l*2+1;
-char libi[h][yo], input[l][yo]; 
+char libi[h][yo], input[l][yo], buffer[h][yo]; 
     // Open the file for reading
     file = fopen(filename, "r");
     if (file == NULL) {
         printf("Error opening file.\n");
         return 0;
     }
-
-
-    i = storef(file, h, libi);
-     displ(i, libi);
+    
+a = storef(file, h, libi);
+uinput(file, h, input);
+     displ(a, libi);
     
      
 
     // Close the file
     fclose(file);
-    //write user input loop
-//swap user input and slice into main file
-    // Print the array
-    printf("(%s)\n", libi[5]);
-    printf("(%d)\n", l);
+   
+    printf("%d(%s)\n",a , libi[5]);
+    printf("(%d)\n", a);
     return 0;
 }
-void count(int *k){
+void acount(int *k){
 char madlib[ya][yo];
 int i, j;
 FILE *readinput;  
@@ -67,22 +66,33 @@ return y;
 void displ(int mac, char arr[][yo]){
 
 for(int y = 0; y<mac; y++){
-printf(" %s", arr[y]);
+printf("%d %s",y+1 , arr[y]);
 }
 }
-void swapstr(char str1[], char str2[]) {
-    int i = 0;
-    char temp[50];
+void uinput(FILE* fptr,int mac, char arr[][yo]){
+char buffer[mac][yo];
+int y = 0;
+for(int i=0;i<ya;i++){
+for(int j=0;j<ya;j++){
+fscanf(fptr, "%c", &buffer[i][j]);
+}
+}
+for(int i=0;i<ya;i++){
+for(int j=0;j<ya;j++){
+if(buffer[i][j-2] == 'A'){
+printf("Enter an adjective: ");
+scanf("%s", arr[y]);
+}
+if(buffer[i][j-2] == 'N'){
 
-    // Find the length of the shorter string
-    while (str1[i] != '\0' || str2[i] != '\0') {
-       i+=2;
-   }
+printf("Enter an noun: ");
+scanf("%s", arr[y]);
+}
+if(buffer[i][j-2] == 'V'){
 
-    // Swap characters
-    for (int j = 0; j < i; j++) {
-        temp[50] = str1[j];
-        str1[j] = str2[j];
-        str2[j] = temp[50];
-    }
+printf("Enter an verb: ");
+scanf("%s", arr[y]);
+}
+}
+}
 }

@@ -96,3 +96,24 @@ scanf("%s", arr[y]);
 }
 }
 }
+void swapstr(char arr[][yo], int row1, int row2) {
+    char temp[yo];
+int i;
+    // Copy row1 to temp
+    for ( i = 0; arr[row1][i] != '\0'; i++) {
+        temp[i] = arr[row1][i];
+    }
+    temp[i] = '\0'; 
+
+    // Copy row2 to row1
+    for ( i = 0; arr[row2][i] != '\0'; i++) {
+        arr[row1][i] = arr[row2][i];
+    }
+    arr[row1][i] = '\0'; // Add null terminator
+
+    // Copy temp to row2
+    for ( i = 0; temp[i] != '\0'; i++) {
+        arr[row2][i] = temp[i];
+    }
+    arr[row2][i] = '\0'; // Add null terminator
+}
